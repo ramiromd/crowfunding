@@ -12,5 +12,6 @@ WORKDIR /app
 
 COPY . .
 
+EXPOSE 8080
 # Keep the container running for development purposes
 CMD ["sleep", "infinity"]

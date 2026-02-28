@@ -4,5 +4,7 @@ services:
       context: .
       dockerfile: iac/devtool/Dockerfile
     container_name: crowfunding-devtool
+    ports:
+      - "8080:8080"
     volumes:
       - .:/app
