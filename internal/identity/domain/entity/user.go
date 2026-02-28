@@ -16,6 +16,9 @@ type User struct {
 }
 
 func NewUser(entityId sharedvalue.EntityId, nickname identityvalue.Nickname, email identityvalue.Email, passwordHash identityvalue.PasswordHash, createdAt sharedvalue.CreationDate, updatedAt sharedvalue.UpdateDate) (*User, error) {
+	
+	// TODO: Inicializar createdAt implicitamente sin parametros.
+	// TODO: UpdatedAt debe ser opcional. Y no debe tener un valor por defecto.
 	if err := updatedAt.CheckGreaterOrEqualThan(createdAt); err != nil {
 		return nil, err
 	}
