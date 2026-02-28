@@ -41,6 +41,35 @@ crowfunding/
 └── go.sum
 ```
 
+## Desarrollo
+
+Los comandos Go se ejecutan dentro del contenedor `crowfunding-devtool`, que monta el proyecto en `/app` y provee el toolchain de Go.
+
+### Levantar el contenedor
+
+```bash
+docker compose up -d devtool
+```
+
+### Comandos disponibles
+
+```bash
+# Ejecutar la aplicación
+docker compose exec devtool go run cmd/api/main.go
+
+# Compilar
+docker compose exec devtool go build -o bin/api cmd/api/main.go
+
+# Correr tests
+docker compose exec devtool go test ./...
+
+# Agregar una dependencia
+docker compose exec devtool go get <paquete>
+
+# Abrir una shell interactiva
+docker compose exec devtool bash
+```
+
 ### Convenciones de tests
 **TODO : Definir ubicación de tests de integración y de contratos.**
 | Tipo | Ubicación |
