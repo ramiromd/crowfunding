@@ -8,7 +8,6 @@ disable-model-invocation: true
 - El archivo especificado debe contener el título en la primera línea y el contenido del issue a partir de la segunda línea.
 - El archivo especificado debe ser un archivo .md con el formato mencionado anteriormente. En caso de no ser proporcionado o no cumplir con el formato, se debe retornar un error indicando la falta de información o el formato incorrecto.
 - El issue debe ser asignado al usuario $ARGUMENTS[1].
-- El issue debe ser creado con el milestone $ARGUMENTS[2]. 
-- De no existir el milestone, se debe crear uno nuevo con ese nombre y asignarlo al issue. 
-- Si el milestone ya existe, se debe asignar al issue sin crear uno nuevo.
-- Si el milestone no es especificado, el issue debe ser creado sin asignar ningún milestone.
+- El issue debe ser creado con el milestone identificado por el campo `milestone_id` del front matter YAML del archivo. Este campo contiene el ID numérico del milestone en GitHub (ej: `milestone_id: 1`). El front matter se encuentra al inicio del archivo, delimitado por `---`.
+- Es requerido que el milestone exista previamente en el repositorio. Si el milestone no existe, se debe retornar un error indicando que el milestone no fue encontrado.
+- Si el campo `milestone_id` no está presente en el front matter, o el archivo no tiene front matter, el issue debe ser creado sin asignar ningún milestone.

@@ -1,3 +1,7 @@
+---
+milestone_id: 1
+---
+
 # Generar JWT de acceso mediante credenciales
 
 ## Narrativa
@@ -10,7 +14,7 @@
 - **Escenario:** Autenticación exitosa con credenciales válidas
   - **Dado que** el usuario existe en el sistema y su contraseña es correcta
   - **Cuando** envía una petición `POST /auth/tokens` con `email` y `password` válidos
-  - **Entonces** recibe una respuesta `200 OK` con un JWT firmado (HS256 o RS256) en el cuerpo, junto con el tiempo de expiración
+  - **Entonces** recibe una respuesta `201 OK` con un JWT firmado (HS256 o RS256) en el cuerpo, junto con el tiempo de expiración
 
 - **Escenario:** Credenciales incorrectas
   - **Dado que** el usuario envía un email o contraseña incorrectos
@@ -25,12 +29,12 @@
 - **Escenario:** Usuario inactivo o deshabilitado
   - **Dado que** el usuario existe pero su cuenta está deshabilitada
   - **Cuando** realiza la petición `POST /auth/tokens` con credenciales correctas
-  - **Entonces** recibe una respuesta `403 Forbidden` indicando que la cuenta no está activa
+  - **Entonces** recibe una respuesta `401 Forbidden` indicando que la cuenta no está activa
 
 ## Definición de Hecho (DoD)
 - [ ] Endpoint `POST /auth/tokens` implementado en Go
 - [ ] Contraseña comparada usando bcrypt (sin comparación en texto plano)
-- [ ] JWT contiene claims: `sub` (UUID del usuario), `email`, `role`, `exp`, `iat`
+- [ ] JWT contiene claims: `sub` (UUID del usuario), `email`, `exp`, `iat`
 - [ ] Tiempo de expiración configurable via variable de entorno (`JWT_EXPIRATION`)
 - [ ] Clave secreta de firma cargada desde variable de entorno (`JWT_SECRET`), nunca hardcodeada
 - [ ] Código revisado
