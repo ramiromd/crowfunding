@@ -1,0 +1,6 @@
+{
+  "env": {
+    "GITHUB_REPO": "ramiromd/crowfunding",
+    "USER_STORIES": "./docs/"
+  }
+}
