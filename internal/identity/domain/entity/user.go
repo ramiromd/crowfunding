@@ -19,6 +19,7 @@ func NewUser(entityId sharedvalue.EntityId, nickname identityvalue.Nickname, ema
 	
 	// TODO: Inicializar createdAt implicitamente sin parametros.
 	// TODO: UpdatedAt debe ser opcional. Y no debe tener un valor por defecto.
+	// TODO: Implementar Builder para evitar tener tantos parametros en el constructor.
 	if err := updatedAt.CheckGreaterOrEqualThan(createdAt); err != nil {
 		return nil, err
 	}
