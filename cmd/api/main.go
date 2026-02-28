@@ -10,10 +10,7 @@ import (
 func main() {
 	server := gin.Default()
 	server.GET("/health", crowhttp.HealthHandler)
-	status := server.Run(":8080")
-	if (status != nil) {
-		log.Fatal("Failed to start server: ", status)
+	if err := server.Run(":8080"); err != nil {
+		log.Fatal("Failed to start server: ", err)
 	}
-
-	log.Println("Server started on port 8080")
 }
