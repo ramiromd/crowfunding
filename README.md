@@ -32,6 +32,11 @@ crowfunding/
 │   └── contract/               # Tests de contrato (Gherkin / godog)
 │       ├── features/           # Archivos .feature
 │       └── steps/              # Implementación de los steps
+├── iac/                        # Infrastructure as Code
+│   ├── webapp/ 
+│   ├── redis/   
+│   ├── rabbit/                   
+│   └── postgre/                     
 ├── go.mod
 └── go.sum
 ```

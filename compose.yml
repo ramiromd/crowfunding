@@ -1,0 +1,8 @@
+services:
+  devtool:
+    build:
+      context: .
+      dockerfile: iac/devtool/Dockerfile
+    container_name: crowfunding-devtool
+    volumes:
+      - .:/app
