@@ -17,7 +17,7 @@ func NewUpdateDate() UpdateDate {
 }
 
 func NewUpdateDateFromString(updateDate string) (UpdateDate, error) {
-	parsedUpdateDate, err := time.Parse(time.RFC3339, updateDate)
+	parsedUpdateDate, err := time.Parse(time.RFC3339Nano, updateDate)
 	if err != nil {
 		return UpdateDate{}, ErrInvalidUpdateDateFormat
 	}
@@ -25,7 +25,12 @@ func NewUpdateDateFromString(updateDate string) (UpdateDate, error) {
 }
 
 func (u UpdateDate) Value() string {
-	return u.value.Format(time.RFC3339)
+	return u.value.Format(time.RFC3339Nano)
+}
+
+// TODO: Implement better way to compare dates without relying on string parsing in tests
+func (u UpdateDate) Time() time.Time {
+	return u.value
 }
 
 func (u UpdateDate) CheckGreaterOrEqualThan(creationDate CreationDate) error {

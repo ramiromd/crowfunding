@@ -16,7 +16,7 @@ func NewCreationDate() CreationDate {
 }
 
 func NewCreationDateFromString(creationDate string) (CreationDate, error) {
-	parsedCreationDate, err := time.Parse(time.RFC3339, creationDate)
+	parsedCreationDate, err := time.Parse(time.RFC3339Nano, creationDate)
 	if err != nil {
 		return CreationDate{}, ErrInvalidCreationDateFormat
 	}
@@ -24,7 +24,7 @@ func NewCreationDateFromString(creationDate string) (CreationDate, error) {
 }
 
 func (c CreationDate) Value() string {
-	return c.value.Format(time.RFC3339)
+	return c.value.Format(time.RFC3339Nano)
 }
 
 func (c CreationDate) Time() time.Time {
