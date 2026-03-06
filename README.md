@@ -70,6 +70,23 @@ docker compose exec devtool go get <paquete>
 docker compose exec devtool bash
 ```
 
+### Reporte de cobertura HTML
+
+Se utiliza `gcov2lcov` + `genhtml` (lcov) para generar reportes de cobertura con navegación por paquete y resaltado por línea, similar a JaCoCo.
+
+```bash
+# 1. Generar el perfil de cobertura
+docker compose exec devtool go test -coverprofile=reports/coverage/coverage.out ./...
+
+# 2. Convertir a formato LCOV
+docker compose exec devtool gcov2lcov -infile=reports/coverage/coverage.out -outfile=reports/coverage/coverage.lcov
+
+# 3. Generar el HTML
+docker compose exec devtool genhtml reports/coverage/coverage.lcov --output-directory reports/coverage/html/
+```
+
+El reporte queda disponible en `reports/coverage/html/index.html`.
+
 ### Convenciones de tests
 **TODO : Definir ubicación de tests de integración y de contratos.**
 | Tipo | Ubicación |

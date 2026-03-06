@@ -6,9 +6,12 @@ RUN apk add --no-cache \
     bash \
     make \
     gcc \
+    lcov \
     musl-dev
 
 WORKDIR /app
+
+RUN go install github.com/jandelgado/gcov2lcov@v1.1.1
 
 COPY . .
 
